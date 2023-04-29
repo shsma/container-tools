@@ -16,3 +16,4 @@ EXPOSE 9003
 # Run the app when the container starts
 CMD ["./main"]
 
+
