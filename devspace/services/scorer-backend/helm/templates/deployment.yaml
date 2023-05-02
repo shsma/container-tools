@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scorer-backend-deployment
+  labels:
+    app: scorer-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: scorer-backend
+  template:
+    metadata:
+      labels:
+        app: scorer-backend  # This should match the selector in the deployment spec
+    spec:
+      containers:
+        - name: scorer-backend-container
+          image: scorer-backend:1.0.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 30

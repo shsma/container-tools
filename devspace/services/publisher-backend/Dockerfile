@@ -11,7 +11,7 @@ COPY . .
 RUN go build -o main .
 
 # Expose the port that the app listens on
-EXPOSE 9003
+EXPOSE 9004
 
 # Run the app when the container starts
 CMD ["./main"]
