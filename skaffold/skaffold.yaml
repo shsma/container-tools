@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+metadata:
+  name: skaffold-control-tour
+build:
+  artifacts:
+    - image: example-app
+      context: .
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+      - name: example-app
+        chartPath: ./helm-chart
+        valuesFiles:
+          - ./helm-chart/values.yaml
