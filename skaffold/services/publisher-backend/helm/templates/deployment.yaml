@@ -14,8 +14,6 @@ spec:
       labels:
         app: publisher-backend
     spec:
-      imagePullSecrets:
-        - name: registry-creds
       containers:
         - name: publisher-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
