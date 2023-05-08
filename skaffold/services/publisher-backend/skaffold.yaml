@@ -3,6 +3,13 @@ kind: Config
 metadata:
   name: publisher-backend
 
+requires:
+  - path: ../scorer-backend
+#  - git:
+#      repo: http://github.com/GoogleContainerTools/skaffold.git
+#      path: getting-started/skaffold.yaml
+#      ref: main
+
 build:
   tagPolicy:
     sha256: {}

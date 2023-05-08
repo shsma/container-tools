@@ -6,7 +6,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hellow World From publish-backend!")
+	fmt.Fprintf(w, "Hellow World From Publish-Backend!")
 }
 
 func main() {
@@ -18,4 +18,3 @@ func main() {
 		fmt.Println(err)
 	}
 }
-

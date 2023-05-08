@@ -1,0 +1,15 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+metadata:
+  name: skaffold control tour
+
+build:
+  local:
+    concurrency: 0 #builds all artifacts parallely
+
+requires:
+  - path: ./services/publisher-backend
+#  - git:
+#      repo: http://github.com/GoogleContainerTools/skaffold.git
+#      path: getting-started/skaffold.yaml
+#      ref: main
