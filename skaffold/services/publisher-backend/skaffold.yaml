@@ -1,0 +1,40 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+metadata:
+  name: publisher-backend
+
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - image: my-image-registry.tld/username/publisher-backend
+      context: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    useDockerCLI: true
+    useBuildkit: false
+    push: false
+
+deploy:
+  helm:
+    releases:
+      - name: publisher-backend
+        chartPath: helm
+        namespace: container-tools-skaffold
+        upgradeOnChange: true
+        valuesFiles:
+          - helm/values.yaml
+        version: 0.1.0
+    hooks:
+      before:
+        - host:
+            # Creates namespace
+            command: ["sh", "-c", "kubectl create namespace container-tools-skaffold --dry-run=client -o yaml | kubectl apply -f -"]
+
+portForward:
+  - resourceType: service
+    resourceName: publisher-backend
+    namespace: container-tools-skaffold
+    port: 9004
+    localPort: 9004

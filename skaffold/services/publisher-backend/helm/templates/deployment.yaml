@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publisher-backend
+  labels:
+    app: publisher-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publisher-backend
+  template:
+    metadata:
+      labels:
+        app: publisher-backend
+    spec:
+      imagePullSecrets:
+        - name: registry-creds
+      containers:
+        - name: publisher-backend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
