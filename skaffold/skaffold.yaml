@@ -1,7 +1,7 @@
 apiVersion: skaffold/v4beta4
 kind: Config
 metadata:
-  name: skaffold control tour
+  name: skaffold control tower
 
 build:
   local:
