@@ -4,18 +4,9 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-
-@app.route('/greet', methods=['GET'])
-def greet():
-    name = request.args.get('name')
-    if name:
-        return f'Hello, {name}!'
-    else:
-        return 'Please provide a name.'
+def root():
+    return "Hello from Scorer Backend!"
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=9003)

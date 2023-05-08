@@ -1,0 +1,40 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+metadata:
+  name: scorer-backend
+
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - image: my-image-registry.tld/username/scorer-backend
+      context: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    useDockerCLI: true
+    useBuildkit: false
+    push: false
+
+deploy:
+  helm:
+    releases:
+      - name: scorer-backend
+        chartPath: helm
+        namespace: container-tools-skaffold
+        upgradeOnChange: true
+        valuesFiles:
+          - helm/values.yaml
+        version: 0.1.0
+    hooks:
+        before:
+            - host:
+                # Creates namespace
+                command: ["sh", "-c", "kubectl create namespace container-tools-skaffold --dry-run=client -o yaml | kubectl apply -f -"]
+
+portForward:
+    - resourceType: service
+      resourceName: scorer-backend
+      namespace: container-tools-skaffold
+      port: 9003
+      localPort: 9003
