@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scorer-backend
+  name: publisher-backend
   labels:
-    app: scorer-backend
+    app: publisher-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scorer-backend
+      app: publisher-backend
   template:
     metadata:
       labels:
-        app: scorer-backend
+        app: publisher-backend
     spec:
       containers:
-        - name: scorer-backend
+        - name: publisher-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

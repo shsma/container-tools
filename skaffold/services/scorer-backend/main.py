@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return "Hello from Scorer Backend!"
+    return "Hello from Scorer-Backend!"
 
 
 if __name__ == '__main__':

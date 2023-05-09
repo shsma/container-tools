@@ -1,0 +1,4 @@
+image:
+  repository: my-image-registry.tld/username/scorer-backend
+  pullPolicy: Always
+  tag: "latest"

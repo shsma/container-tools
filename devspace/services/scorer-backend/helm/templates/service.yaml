@@ -1,14 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: scorer-backend-service
-  labels:
-    app: scorer-backend
+  name: scorer-backend
 spec:
-  type: LoadBalancer
+  ports:
+    - port: 9003
+      targetPort: 9003
+      name: http
   selector:
     app: scorer-backend
-  ports:
-    - name: http
-      port: 80
-      targetPort: 5000

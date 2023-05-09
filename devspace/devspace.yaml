@@ -9,7 +9,7 @@ dependencies:
 
 
 pipelines:
-  # Run this pipeline via  `devspace run-pipeline setup-workspace`
+  # Run this pipeline via `devspace run-pipeline setup-workspace`
   deploy:
     run: |-
       run_dependencies --all       # 1. Deploy any projects this project needs (see "dependencies")
