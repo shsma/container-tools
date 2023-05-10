@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: scorer-backend
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}"

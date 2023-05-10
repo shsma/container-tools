@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: publisher-backend
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}"

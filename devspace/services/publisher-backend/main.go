@@ -6,7 +6,10 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hellow World From publish-backend!")
+	_, err := fmt.Fprintf(w, "Hellow From Devspace publish-backend!")
+	if err != nil {
+		panic("Error while writing response")
+	}
 }
 
 func main() {
@@ -18,4 +21,3 @@ func main() {
 		fmt.Println(err)
 	}
 }
-
